@@ -15,20 +15,20 @@ export class CategoriesService {
     return this.categoryRepository.save(newCategory);
   }
 
-  async findAll(): Promise<Category[]>{
+  findAll(): Promise<Category[]>{
     return this.categoryRepository.find();
   }
 
   findOne(id: number):Promise<Category> {
     return this.categoryRepository.findOneBy({id});
   }
-  async findById(id:number):Promise<Category>{
+  findById(id:number):Promise<Category>{
     return this.categoryRepository.findOneBy({id});
   }
 
-  async update(id: number, updateCategoryDto: UpdateCategoryDto) {
+  async update(id: number, updateCategoryDto: UpdateCategoryDto):Promise<Category> {
     await this.categoryRepository.update(id,updateCategoryDto);
-    return this.findById(id);
+    return this.findOne(id);
   }
 
   remove(id: number):Promise<DeleteResult> {

@@ -1,6 +1,6 @@
 import {Body, Controller, Delete, Get, Param, Patch, Post} from '@nestjs/common';
 import {UserService} from "./user.service";
-import {user} from "../entities/user.entity";
+import {User} from "../entities/user.entity";
 import {createUserDto} from "./dto/create-user.dto";
 import {DeleteResult} from "typeorm";
 import {UpdateUserDto} from "./dto/update-user.dto";
@@ -11,16 +11,16 @@ export class UserController {
 
     }
     @Get()
-    async findAll():Promise<user[]>{
+    async findAll():Promise<User[]>{
         return this.userService.findAll();
     }
     @Get(':id')
-    async findById(@Param('id')id:number):Promise<user>
+    async findById(@Param('id')id:number):Promise<User>
     {
         return this.userService.findById(id);
     }
     @Post()
-    async create(@Body() createUserDto: createUserDto):Promise<user>{
+    async create(@Body() createUserDto: createUserDto):Promise<User>{
         return this.userService.create(createUserDto);
     }
 
@@ -31,7 +31,7 @@ export class UserController {
     }
 
     @Patch(':id')
-    async update(@Param('id')id:number, @Body() updateUserDto:UpdateUserDto):Promise<user>
+    async update(@Param('id')id:number, @Body() updateUserDto:UpdateUserDto):Promise<User>
     {
         return this.userService.update(id,updateUserDto);
     }
